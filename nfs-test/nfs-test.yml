@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: test-pv
+spec:
+  capacity:
+    storage: 1Gi
+  storageClassName: managed-nfs
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /mnt/catacombs/vmware/elastic
+    server: 192.168.69.151
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+    namespace: default
+    name: test-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-pvc
+spec:
+  storageClassName: managed-nfs
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test
+  labels:
+    app: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+      - name: test
+        image: busybox
+        command: ["sleep"]
+        args: ["100000"]
+        volumeMounts:
+        - name: storage
+          mountPath: /data
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: test-pvc
+
