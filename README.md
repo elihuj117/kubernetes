@@ -11,7 +11,6 @@ kubectl apply -f https://raw.githubusercontent.com/elihuj117/kubernetes/master/m
 kubectl apply -f https://raw.githubusercontent.com/elihuj117/kubernetes/master/metal-lb/metallb-config.yaml
 kubectl apply -f https://raw.githubusercontent.com/elihuj117/kubernetes/master/metal-lb/metallb.yaml
 ```
-
 ## nfs-test
 Stuff for some asshole
 
