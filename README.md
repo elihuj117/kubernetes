@@ -16,3 +16,5 @@ Stuff for some asshole
 
 ## vsphereCSI
 vSphere Container Storage Interface (CSI). Official documentation can be found [here](https://github.com/kubernetes-sigs/vsphere-csi-driver) and [here](https://cloud-provider-vsphere.sigs.k8s.io/tutorials/enabling-vsphere-csi-on-an-existing-cluster.html).
+
+The storageclass folder contains storage classes for NFS, and vSphere. The pvc folder contains PersistentVolumeClaim examples for NFS, and vSphere which correspond to the associated PVC's. 
