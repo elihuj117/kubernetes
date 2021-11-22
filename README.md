@@ -9,7 +9,7 @@ Images used:
 - docker.elastic.co/kibana/kibana:7.10.0
 - fluent/fluentd-kubernetes-daemonset:v1.4.2-debian-elasticsearch-1.1
 
-```elastic-pvc.yaml``` using ```managed-nfs``` storage class.
+Persistent Volume Claims using the ```managed-nfs``` storage class. Reasoning behind this is the vSphere CSI driver is [unable](https://cormachogan.com/2020/05/07/vsphere-csi-driver-versions-and-capabilities/) to perform Read-Write-Many (RWX) for non-vSAN volumes. Elastic requires multiple nodes to read/write to the same storage simultaneously. 
 
 ## Grafana
 Grafana deployment with InfluxDB, and Telegraf. 
