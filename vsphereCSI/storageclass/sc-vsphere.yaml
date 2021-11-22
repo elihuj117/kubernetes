@@ -1,7 +1,0 @@
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-  name: vsphere-local
-provisioner: csi.vsphere.vmware.com
-parameters:
-    storagePolicyName: "Local_HDD_Policy"
