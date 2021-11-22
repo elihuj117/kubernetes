@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telegraf
+  labels:
+    app: grafana
+  namespace: grafana
+spec:
+  selector:
+    matchLabels:
+      app: grafana
+      tier: telegraf
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: grafana
+        tier: telegraf
+    spec:
+      containers:
+      - name: telegraf
+        image: telegraf
+        volumeMounts:
+          - name: telegraf-config
+            mountPath: /etc/telegraf/telegraf.conf
+            subPath: telegraf.conf
+            readOnly: true
+        envFrom:
+        - secretRef:
+            name: telegraf-secrets
+      volumes:
+        - name: telegraf-config
+          configMap:
+            name: telegraf-config

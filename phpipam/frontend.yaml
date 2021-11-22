@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpipam
+  labels:
+    app: phpipam
+  namespace: phpipam
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: phpipam
+    tier: frontend
+  type: LoadBalancer
+  loadBalancerIP: 192.168.31.201
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpipam
+  labels:
+    app: phpipam
+  namespace: phpipam
+spec:
+  selector:
+    matchLabels:
+      app: phpipam
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: phpipam
+        tier: frontend
+    spec:
+      containers:
+      - name: phpipam
+        image: phpipam/phpipam-www:1.5x
+        envFrom:
+        - secretRef:
+            name: frontend-secrets
+        ports:
+        - containerPort: 80
+      - name: phpipam-cron
+        image: phpipam/phpipam-cron:1.5x
+        envFrom:
+        - secretRef:
+            name: frontend-secrets

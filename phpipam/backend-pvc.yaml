@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: phpipam-mysql-pvc
+  annotations:
+    volume.beta.kubernetes.io/storage-class: vsphere-local
+  labels:
+    app: phpipam
+  namespace: phpipam
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

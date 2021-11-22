@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpipam-mysql
+  labels:
+    app: phpipam
+  namespace: phpipam
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: phpipam
+    tier: backend
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpipam-mysql
+  labels:
+    app: phpipam
+  namespace: phpipam
+spec:
+  selector:
+    matchLabels:
+      app: phpipam
+      tier: backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: phpipam
+        tier: backend
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: phpipam-mysql
+        envFrom:
+        - secretRef:
+            name: backend-secrets
+        ports:
+        - containerPort: 3306
+          name: phpipam-mysql
+        volumeMounts:
+        - name: phpipam-mysql-pv
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: phpipam-mysql-pv
+        persistentVolumeClaim:
+          claimName: phpipam-mysql-pvc
