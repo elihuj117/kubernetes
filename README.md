@@ -1,21 +1,36 @@
 # Kubernetes
 Collection of artifacts for Kubernetes use in my lab.
 
-## metal-lb
-MetalLB allows you to create Kubernetes services of type LoadBalancer in on-premise clusters. Documentation can be found [here](https://metallb.universe.tf/). 
+## Elasticsearch
+EFK stack deployment (Elasticsearch, Fluentd, Kibana). LoadBalancer service provided by [metal-lb](https://metallb.universe.tf/). 
 
-##### To get started with metal-lb
+Images used:
+- docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+- docker.elastic.co/kibana/kibana:7.10.0
+- fluent/fluentd-kubernetes-daemonset:v1.4.2-debian-elasticsearch-1.1
 
-Modify metallb-config.yaml to adjust the address pool to suit your network
-```
-kubectl apply -f https://raw.githubusercontent.com/elihuj117/kubernetes/master/metal-lb/namespace.yaml
-kubectl apply -f https://raw.githubusercontent.com/elihuj117/kubernetes/master/metal-lb/metallb-config.yaml
-kubectl apply -f https://raw.githubusercontent.com/elihuj117/kubernetes/master/metal-lb/metallb.yaml
-```
-## nfs-test
-Stuff for some asshole
+```elastic-pvc.yaml``` using ```managed-nfs``` storage class.
 
-## vsphereCSI
-vSphere Container Storage Interface (CSI). Official documentation can be found [here](https://github.com/kubernetes-sigs/vsphere-csi-driver) and [here](https://cloud-provider-vsphere.sigs.k8s.io/tutorials/enabling-vsphere-csi-on-an-existing-cluster.html).
+## Grafana
+Grafana deployment with InfluxDB, and Telegraf. 
 
-The storageclass folder contains storage classes for NFS, and vSphere. The pvc folder contains PersistentVolumeClaim examples for NFS, and vSphere which correspond to the associated PVC's. 
+Images used:
+- grafana/grafana
+- influxdb:1.8
+- telegraf
+
+Persistent Volume Claims using the ```vsphere-local``` storage class. Leveraging the vSphere CSI to enable vSphere to provision Persistent Volumes. Official documentation can be found [here](https://github.com/kubernetes-sigs/vsphere-csi-driver) and [here](https://cloud-provider-vsphere.sigs.k8s.io/tutorials/enabling-vsphere-csi-on-an-existing-cluster.html).
+
+## phpIPAM
+```frontend.yaml``` contains a multi-POD deployment.
+
+Images used:
+- phpipam/phpipam-www:1.5x
+- phpipam/phpipam-cron:1.5x
+- mysql:5.6
+
+## Joomla
+
+Images used:
+- joomla:3.9-php7.2-apache
+- mysql:5.6
