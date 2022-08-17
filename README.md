@@ -9,7 +9,7 @@ Images used:
 - docker.elastic.co/kibana/kibana:7.10.0
 - fluent/fluentd-kubernetes-daemonset:v1.4.2-debian-elasticsearch-1.1
 
-```elastic-pvc.yaml``` using ```managed-nfs``` storage class.
+Persistent Volume Claims using the ```managed-nfs``` storage class. Reasoning behind this is the vSphere CSI driver is [unable](https://cormachogan.com/2020/05/07/vsphere-csi-driver-versions-and-capabilities/) to perform Read-Write-Many (RWX) for non-vSAN volumes. Elastic requires multiple nodes to read/write to the same storage simultaneously. 
 
 ## Grafana
 Grafana deployment with InfluxDB, and Telegraf. 
@@ -19,7 +19,7 @@ Images used:
 - influxdb:1.8
 - telegraf
 
-Persistent Volume Claims using the ```vsphere-local``` storage class. Leveraging the vSphere CSI to enable vSphere to provision Persistent Volumes. Official documentation can be found [here](https://github.com/kubernetes-sigs/vsphere-csi-driver) and [here](https://cloud-provider-vsphere.sigs.k8s.io/tutorials/enabling-vsphere-csi-on-an-existing-cluster.html).
+Persistent Volume Claims using the ```vsphere-local``` storage class. 
 
 ## phpIPAM
 ```frontend.yaml``` contains a multi-POD deployment.
@@ -29,8 +29,5 @@ Images used:
 - phpipam/phpipam-cron:1.5x
 - mysql:5.6
 
-## Joomla
-
-Images used:
-- joomla:3.9-php7.2-apache
-- mysql:5.6
+## Storage Classes
+Storage classes for NFS, and vSphere. Leveraging the vSphere CSI to enable vSphere to provision Persistent Volumes. Official documentation can be found [here](https://github.com/kubernetes-sigs/vsphere-csi-driver) and [here](https://cloud-provider-vsphere.sigs.k8s.io/tutorials/enabling-vsphere-csi-on-an-existing-cluster.html).
