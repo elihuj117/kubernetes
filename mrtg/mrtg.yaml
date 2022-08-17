@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mrtg
+  labels:
+    app: mrtg
+  namespace: mrtg
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: mrtg
+    tier: mrtg
+  type: LoadBalancer
+  loadBalancerIP: 192.168.31.203
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mrtg
+  labels:
+    app: mrtg
+  namespace: mrtg
+spec:
+  selector:
+    matchLabels:
+      app: mrtg
+      tier: mrtg
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mrtg
+        tier: mrtg
+    spec:
+      containers:
+        - name: mrtg
+          image: cityhawk/mrtg
+          volumeMounts:
+            - name: mrtg-pv
+              mountPath: /mrtg_data
+            - name: mrtg-config
+              mountPath: /etc/mrtg.cfg
+              subPath: mrtg.cfg
+              readOnly: true
+      volumes:
+      - name: mrtg-pv
+        persistentVolumeClaim:
+          claimName: mrtg-pvc
+      - name: mrtg-config
+        configMap:
+          name: mrtg-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mrtg-nginx
+  labels:
+    app: mrtg
+  namespace: mrtg
+spec:
+  selector:
+    matchLabels:
+      app: mrtg
+      tier: mrtg
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mrtg
+        tier: mrtg
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          volumeMounts:
+            - name: mrtg-pv
+              mountPath: /usr/share/nginx/html
+          ports:
+          - containerPort: 80
+      volumes:
+      - name: mrtg-pv
+        persistentVolumeClaim:
+          claimName: mrtg-pvc

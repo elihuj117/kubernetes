@@ -1,0 +1,1032 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mrtg-config
+  namespace: mrtg
+data:
+  mrtg.cfg: |+
+        # Created by 
+        # /bin/cfgmaker --snmp-options=:::::2 --ifref=descr --ifdesc=descr labro@192.168.31.1
+
+
+        ### Global Config Options
+
+        #  for UNIX
+        # WorkDir: /home/http/mrtg
+        WorkDir: /mrtg_data
+
+        #  or for NT
+        # WorkDir: c:\mrtgdata
+
+        ### Global Defaults
+
+        #  to get bits instead of bytes and graphs growing to the right
+        # Options[_]: growright, bits
+
+        EnableIPv6: no
+
+        ######################################################################
+        # System: fw01.paimei.lab.local
+        # Description: 
+        # Contact: Steve Rogers
+        # Location: Lab
+        ######################################################################
+
+
+        ### Interface 1 >> Descr: 'lo' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+        ### The following interface is commented out because:
+        ### * it is a Software Loopback interface
+        ### * has no ifSpeed property
+        # 
+        # Target[192.168.31.1_lo]: \lo:labro@192.168.31.1:::::2
+        # noHC[192.168.31.1_lo]: yes
+        # SetEnv[192.168.31.1_lo]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="lo"
+        # MaxBytes[192.168.31.1_lo]: 0
+        # Title[192.168.31.1_lo]: lo -- fw01.paimei.lab.local
+        # PageTop[192.168.31.1_lo]: <h1>lo -- fw01.paimei.lab.local</h1>
+        # 		<div id="sysdetails">
+        # 			<table>
+        # 				<tr>
+        # 					<td>System:</td>
+        # 					<td>fw01.paimei.lab.local in Lab</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Maintainer:</td>
+        # 					<td>Steve Rogers</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Description:</td>
+        # 					<td>lo  </td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifType:</td>
+        # 					<td>softwareLoopback (24)</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifName:</td>
+        # 					<td>No Name</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Max Speed:</td>
+        # 					<td>0.0 Bytes/s</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Ip:</td>
+        # 					<td>No Ip (No DNS name)</td>
+        # 				</tr>
+        # 			</table>
+        # 		</div>
+
+
+        ### Interface 2 >> Descr: 'ipsec0' | Name: 'No Name' | Ip: 'No Ip' | Eth: '9a-1a-b6-c2-b5-23' ###
+
+        #Target[192.168.31.1_ipsec0]: \ipsec0:labro@192.168.31.1:::::2
+        #noHC[192.168.31.1_ipsec0]: yes
+        #SetEnv[192.168.31.1_ipsec0]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="ipsec0"
+        #MaxBytes[192.168.31.1_ipsec0]: 1250000
+        #Title[192.168.31.1_ipsec0]: ipsec0 -- fw01.paimei.lab.local
+        #PageTop[192.168.31.1_ipsec0]: <h1>ipsec0 -- fw01.paimei.lab.local</h1>
+        #		<div id="sysdetails">
+        #			<table>
+        #				<tr>
+        #					<td>System:</td>
+        #					<td>fw01.paimei.lab.local in Lab</td>
+        #				</tr>
+        #				<tr>
+        #					<td>Maintainer:</td>
+        #					<td>Steve Rogers</td>
+        #				</tr>
+        #				<tr>
+        #					<td>Description:</td>
+        #					<td>ipsec0  </td>
+        #				</tr>
+        #				<tr>
+        #					<td>ifType:</td>
+        #					<td>ethernetCsmacd (6)</td>
+        #				</tr>
+        #				<tr>
+        #					<td>ifName:</td>
+        #					<td>No Name</td>
+        #				</tr>
+        #				<tr>
+        #					<td>Max Speed:</td>
+        #					<td>1250.0 kBytes/s</td>
+        #				</tr>
+        #				<tr>
+        #					<td>Ip:</td>
+        #					<td>No Ip (No DNS name)</td>
+        #				</tr>
+        #			</table>
+        #		</div>
+
+
+        ### Interface 3 >> Descr: 'sit0' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+        ### The following interface is commented out because:
+        ### * it is administratively DOWN
+        ### * it is operationally DOWN
+        ### * has no ifSpeed property
+        # 
+        # Target[192.168.31.1_sit0]: \sit0:labro@192.168.31.1:::::2
+        # noHC[192.168.31.1_sit0]: yes
+        # SetEnv[192.168.31.1_sit0]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="sit0"
+        # MaxBytes[192.168.31.1_sit0]: 0
+        # Title[192.168.31.1_sit0]: sit0 -- fw01.paimei.lab.local
+        # PageTop[192.168.31.1_sit0]: <h1>sit0 -- fw01.paimei.lab.local</h1>
+        # 		<div id="sysdetails">
+        # 			<table>
+        # 				<tr>
+        # 					<td>System:</td>
+        # 					<td>fw01.paimei.lab.local in Lab</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Maintainer:</td>
+        # 					<td>Steve Rogers</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Description:</td>
+        # 					<td>sit0  </td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifType:</td>
+        # 					<td>Encapsulation Interface (131)</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifName:</td>
+        # 					<td>No Name</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Max Speed:</td>
+        # 					<td>0.0 Bytes/s</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Ip:</td>
+        # 					<td>No Ip (No DNS name)</td>
+        # 				</tr>
+        # 			</table>
+        # 		</div>
+
+
+        ### Interface 4 >> Descr: 'ip6tnl0' | Name: 'No Name' | Ip: 'No Ip' | Eth: '00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00' ###
+        ### The following interface is commented out because:
+        ### * it is administratively DOWN
+        ### * it is operationally DOWN
+        ### * has no ifSpeed property
+        # 
+        # Target[192.168.31.1_ip6tnl0]: \ip6tnl0:labro@192.168.31.1:::::2
+        # noHC[192.168.31.1_ip6tnl0]: yes
+        # SetEnv[192.168.31.1_ip6tnl0]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="ip6tnl0"
+        # MaxBytes[192.168.31.1_ip6tnl0]: 0
+        # Title[192.168.31.1_ip6tnl0]: ip6tnl0 -- fw01.paimei.lab.local
+        # PageTop[192.168.31.1_ip6tnl0]: <h1>ip6tnl0 -- fw01.paimei.lab.local</h1>
+        # 		<div id="sysdetails">
+        # 			<table>
+        # 				<tr>
+        # 					<td>System:</td>
+        # 					<td>fw01.paimei.lab.local in Lab</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Maintainer:</td>
+        # 					<td>Steve Rogers</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Description:</td>
+        # 					<td>ip6tnl0  </td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifType:</td>
+        # 					<td>Encapsulation Interface (131)</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifName:</td>
+        # 					<td>No Name</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Max Speed:</td>
+        # 					<td>0.0 Bytes/s</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Ip:</td>
+        # 					<td>No Ip (No DNS name)</td>
+        # 				</tr>
+        # 			</table>
+        # 		</div>
+
+
+        ### Interface 5 >> Descr: 'Port1' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+
+        Target[192.168.31.1_Port1]: \Port1:labro@192.168.31.1:::::2
+        noHC[192.168.31.1_Port1]: yes
+        SetEnv[192.168.31.1_Port1]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port1"
+        MaxBytes[192.168.31.1_Port1]: 125000000
+        Title[192.168.31.1_Port1]: Port1 -- fw01.paimei.lab.local
+        PageTop[192.168.31.1_Port1]: <h1>Port1 -- fw01.paimei.lab.local</h1>
+                        <div id="sysdetails">
+                                <table>
+                                        <tr>
+                                                <td>System:</td>
+                                                <td>fw01.paimei.lab.local</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Maintainer:</td>
+                                                <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Description:</td>
+                                                <td>Port1 -- Management  </td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifType:</td>
+                                                <td>ethernetCsmacd (6)</td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifName:</td>
+                                                <td>LAN</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Max Speed:</td>
+                                                <td>1250.0 MBytes/s</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Ip:</td>
+                                                <td>192.168.30.1</td>
+                                        </tr>
+                                </table>
+                        </div>
+
+
+        ### Interface 6 >> Descr: 'Port2' | Name: 'No Name' | Ip: 'No Ip' | Eth: '00-1a-8c-40-ab-6d' ###
+
+        Target[192.168.31.1_Port2]: \Port2:labro@192.168.31.1:::::2
+        noHC[192.168.31.1_Port2]: yes
+        SetEnv[192.168.31.1_Port2]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port2"
+        MaxBytes[192.168.31.1_Port2]: 125000000
+        Title[192.168.31.1_Port2]: Port2 -- fw01.paimei.lab.local
+        PageTop[192.168.31.1_Port2]: <h1>Port2 -- fw01.paimei.lab.local</h1>
+                        <div id="sysdetails">
+                                <table>
+                                        <tr>
+                                                <td>System:</td>
+                                                <td>fw01.paimei.lab.local</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Maintainer:</td>
+                                                <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Description:</td>
+                                                <td>Port2 -- WAN  </td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifType:</td>
+                                                <td>ethernetCsmacd (6)</td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifName:</td>
+                                                <td>WAN</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Max Speed:</td>
+                                                <td>1250.0 MBytes/s</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Ip:</td>
+                                                <td>192.168.68.128</td>
+                                        </tr>
+                                </table>
+                        </div>
+
+
+        ### Interface 18 >> Descr: 'Port1.200' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+
+        Target[192.168.31.1_Port1.200]: \Port1.200:labro@192.168.31.1:::::2
+        noHC[192.168.31.1_Port1.200]: yes
+        SetEnv[192.168.31.1_Port1.200]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port1.200"
+        MaxBytes[192.168.31.1_Port1.200]: 125000000
+        Title[192.168.31.1_Port1.200]: Port1.200 -- fw01.paimei.lab.local
+        PageTop[192.168.31.1_Port1.200]: <h1>Port1.200 -- fw01.paimei.lab.local</h1>
+                        <div id="sysdetails">
+                                <table>
+                                        <tr>
+                                                <td>System:</td>
+                                                <td>fw01.paimei.lab.local</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Maintainer:</td>
+                                                <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Description:</td>
+                                                <td>Port1.200 -- VLAN200 </td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifType:</td>
+                                                <td>ethernetCsmacd (6)</td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifName:</td>
+                                                <td>VLAN200</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Max Speed:</td>
+                                                <td>1250.0 MBytes/s</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Ip:</td>
+                                                <td>192.168.31.1</td>
+                                        </tr>
+                                </table>
+                        </div>
+
+        ### Interface 14 >> Descr: 'Port1.201' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+
+        Target[192.168.31.1_Port1.201]: \Port1.201:labro@192.168.31.1:::::2
+        noHC[192.168.31.1_Port1.201]: yes
+        SetEnv[192.168.31.1_Port1.201]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port1.201"
+        MaxBytes[192.168.31.1_Port1.201]: 125000000
+        Title[192.168.31.1_Port1.201]: Port1.201 -- fw01.paimei.lab.local
+        PageTop[192.168.31.1_Port1.201]: <h1>Port1.201 -- fw01.paimei.lab.local</h1>
+                        <div id="sysdetails">
+                                <table>
+                                        <tr>
+                                                <td>System:</td>
+                                                <td>fw01.paimei.lab.local</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Maintainer:</td>
+                                                <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Description:</td>
+                                                <td>Port1.201 -- VLAN201 </td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifType:</td>
+                                                <td>ethernetCsmacd (6)</td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifName:</td>
+                                                <td>VLAN201</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Max Speed:</td>
+                                                <td>1250.0 MBytes/s</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Ip:</td>
+                                                <td>192.168.32.1</td>
+                                        </tr>
+                                </table>
+                        </div>
+
+
+        ### Interface 15 >> Descr: 'Port1.202' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+
+        Target[192.168.31.1_Port1.202]: \Port1.202:labro@192.168.31.1:::::2
+        noHC[192.168.31.1_Port1.202]: yes
+        SetEnv[192.168.31.1_Port1.202]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port1.202"
+        MaxBytes[192.168.31.1_Port1.202]: 125000000
+        Title[192.168.31.1_Port1.202]: Port1.202 -- fw01.paimei.lab.local
+        PageTop[192.168.31.1_Port1.202]: <h1>Port1.202 -- fw01.paimei.lab.local</h1>
+                        <div id="sysdetails">
+                                <table>
+                                        <tr>
+                                                <td>System:</td>
+                                                <td>fw01.paimei.lab.local</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Maintainer:</td>
+                                                <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Description:</td>
+                                                <td>Port1.202 -- VLAN202  </td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifType:</td>
+                                                <td>ethernetCsmacd (6)</td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifName:</td>
+                                                <td>VLAN202</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Max Speed:</td>
+                                                <td>1250.0 MBytes/s</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Ip:</td>
+                                                <td>192.168.33.1</td>
+                                        </tr>
+                                </table>
+                        </div>
+
+
+        ### Interface 16 >> Descr: 'Port1.203' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+
+        Target[192.168.31.1_Port1.203]: \Port1.203:labro@192.168.31.1:::::2
+        noHC[192.168.31.1_Port1.203]: yes
+        SetEnv[192.168.31.1_Port1.203]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port1.203"
+        MaxBytes[192.168.31.1_Port1.203]: 125000000
+        Title[192.168.31.1_Port1.203]: Port1.203 -- fw01.paimei.lab.local
+        PageTop[192.168.31.1_Port1.203]: <h1>Port1.203 -- fw01.paimei.lab.local</h1>
+                        <div id="sysdetails">
+                                <table>
+                                        <tr>
+                                                <td>System:</td>
+                                                <td>fw01.paimei.lab.local</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Maintainer:</td>
+                                                <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Description:</td>
+                                                <td>Port1.203 -- VLAN203 </td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifType:</td>
+                                                <td>ethernetCsmacd (6)</td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifName:</td>
+                                                <td>VLAN203</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Max Speed:</td>
+                                                <td>1250.0 MBytes/s</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Ip:</td>
+                                                <td>192.168.34.1</td>
+                                        </tr>
+                                </table>
+                        </div>
+
+
+        ### Interface 17 >> Descr: 'Port1.204' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+
+        Target[192.168.31.1_Port1.204]: \Port1.204:labro@192.168.31.1:::::2
+        noHC[192.168.31.1_Port1.204]: yes
+        SetEnv[192.168.31.1_Port1.204]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port1.204"
+        MaxBytes[192.168.31.1_Port1.204]: 125000000
+        Title[192.168.31.1_Port1.204]: Port1.204 -- fw01.paimei.lab.local
+        PageTop[192.168.31.1_Port1.204]: <h1>Port1.204 -- fw01.paimei.lab.local</h1>
+                        <div id="sysdetails">
+                                <table>
+                                        <tr>
+                                                <td>System:</td>
+                                                <td>fw01.paimei.lab.local</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Maintainer:</td>
+                                                <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Description:</td>
+                                                <td>Port1.204 -- VLAN204  </td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifType:</td>
+                                                <td>ethernetCsmacd (6)</td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifName:</td>
+                                                <td>VLAN204</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Max Speed:</td>
+                                                <td>1250.0 MBytes/s</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Ip:</td>
+                                                <td>192.168.35.1</td>
+                                        </tr>
+                                </table>
+                        </div>
+
+        ### Interface 22 >> Descr: 'Port1.205' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+
+        Target[192.168.31.1_Port1.205]: \Port1.205:labro@192.168.31.1:::::2
+        noHC[192.168.31.1_Port1.205]: yes
+        SetEnv[192.168.31.1_Port1.205]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port1.205"
+        MaxBytes[192.168.31.1_Port1.205]: 125000000
+        Title[192.168.31.1_Port1.205]: Port1.205 -- fw01.paimei.lab.local
+        PageTop[192.168.31.1_Port1.205]: <h1>Port1.205 -- fw01.paimei.lab.local</h1>
+                        <div id="sysdetails">
+                                <table>
+                                        <tr>
+                                                <td>System:</td>
+                                                <td>fw01.paimei.lab.local</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Maintainer:</td>
+                                                <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Description:</td>
+                                                <td>Port1.205 -- VLAN205 </td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifType:</td>
+                                                <td>ethernetCsmacd (6)</td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifName:</td>
+                                                <td>VLAN205</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Max Speed:</td>
+                                                <td>1250.0 MBytes/s</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Ip:</td>
+                                                <td>192.168.36.1</td>
+                                        </tr>
+                                </table>
+                        </div>
+
+        ### Interface 19 >> Descr: 'Port1.206' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+
+        Target[192.168.31.1_Port1.206]: \Port1.206:labro@192.168.31.1:::::2
+        noHC[192.168.31.1_Port1.206]: yes
+        SetEnv[192.168.31.1_Port1.206]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port1.206"
+        MaxBytes[192.168.31.1_Port1.206]: 125000000
+        Title[192.168.31.1_Port1.206]: Port1.206 -- fw01.paimei.lab.local
+        PageTop[192.168.31.1_Port1.206]: <h1>Port1.206 -- fw01.paimei.lab.local</h1>
+                        <div id="sysdetails">
+                                <table>
+                                        <tr>
+                                                <td>System:</td>
+                                                <td>fw01.paimei.lab.local</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Maintainer:</td>
+                                                <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Description:</td>
+                                                <td>Port1.206 -- VLAN206  </td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifType:</td>
+                                                <td>ethernetCsmacd (6)</td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifName:</td>
+                                                <td>VLAN206</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Max Speed:</td>
+                                                <td>1250.0 MBytes/s</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Ip:</td>
+                                                <td>192.168.37.1</td>
+                                        </tr>
+                                </table>
+                        </div>
+
+        ### Interface 20 >> Descr: 'Port1.400' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+
+        Target[192.168.31.1_Port1.400]: \Port1.400:labro@192.168.31.1:::::2
+        noHC[192.168.31.1_Port1.400]: yes
+        SetEnv[192.168.31.1_Port1.400]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port1.400"
+        MaxBytes[192.168.31.1_Port1.400]: 125000000
+        Title[192.168.31.1_Port1.400]: Port1.400 -- fw01.paimei.lab.local
+        PageTop[192.168.31.1_Port1.400]: <h1>Port1.400 -- fw01.paimei.lab.local</h1>
+                        <div id="sysdetails">
+                                <table>
+                                        <tr>
+                                                <td>System:</td>
+                                                <td>fw01.paimei.lab.local</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Maintainer:</td>
+                                                <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Description:</td>
+                                                <td>Port1.400 -- VLAN400 </td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifType:</td>
+                                                <td>ethernetCsmacd (6)</td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifName:</td>
+                                                <td>VLAN400</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Max Speed:</td>
+                                                <td>1250.0 MBytes/s</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Ip:</td>
+                                                <td>192.168.110.1</td>
+                                        </tr>
+                                </table>
+                        </div>
+
+
+        ### Interface 21 >> Descr: 'Port1.401' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+
+        Target[192.168.31.1_Port1.401]: \Port1.401:labro@192.168.31.1:::::2
+        noHC[192.168.31.1_Port1.401]: yes
+        SetEnv[192.168.31.1_Port1.401]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port1.401"
+        MaxBytes[192.168.31.1_Port1.401]: 125000000
+        Title[192.168.31.1_Port1.401]: Port1.401 -- fw01.paimei.lab.local
+        PageTop[192.168.31.1_Port1.401]: <h1>Port1.401 -- fw01.paimei.lab.local</h1>
+                        <div id="sysdetails">
+                                <table>
+                                        <tr>
+                                                <td>System:</td>
+                                                <td>fw01.paimei.lab.local</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Maintainer:</td>
+                                                <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Description:</td>
+                                                <td>Port1.401 -- VLAN401  </td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifType:</td>
+                                                <td>ethernetCsmacd (6)</td>
+                                        </tr>
+                                        <tr>
+                                                <td>ifName:</td>
+                                                <td>VLAN401</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Max Speed:</td>
+                                                <td>1250.0 MBytes/s</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Ip:</td>
+                                                <td>192.168.120.1</td>
+                                        </tr>
+                                </table>
+                        </div>
+
+        ### Interface 7 >> Descr: 'Port3' | Name: 'No Name' | Ip: 'No Ip' | Eth: '00-1a-8c-40-ab-6e' ###
+        ### The following interface is commented out because:
+        ### * it is administratively DOWN
+        ### * it is operationally DOWN
+        # 
+        # Target[192.168.31.1_Port3]: \Port3:labro@192.168.31.1:::::2
+        # noHC[192.168.31.1_Port3]: yes
+        # SetEnv[192.168.31.1_Port3]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port3"
+        # MaxBytes[192.168.31.1_Port3]: 164516864
+        # Title[192.168.31.1_Port3]: Port3 -- fw01.paimei.lab.local
+        # PageTop[192.168.31.1_Port3]: <h1>Port3 -- fw01.paimei.lab.local</h1>
+        # 		<div id="sysdetails">
+        # 			<table>
+        # 				<tr>
+        # 					<td>System:</td>
+        # 					<td>fw01.paimei.lab.local in Lab</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Maintainer:</td>
+        # 					<td>Steve Rogers</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Description:</td>
+        # 					<td>Port3  </td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifType:</td>
+        # 					<td>ethernetCsmacd (6)</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifName:</td>
+        # 					<td>No Name</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Max Speed:</td>
+        # 					<td>164.5 MBytes/s</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Ip:</td>
+        # 					<td>No Ip (No DNS name)</td>
+        # 				</tr>
+        # 			</table>
+        # 		</div>
+
+
+        ### Interface 8 >> Descr: 'Port4' | Name: 'No Name' | Ip: 'No Ip' | Eth: '00-1a-8c-40-ab-6f' ###
+        ### The following interface is commented out because:
+        ### * it is administratively DOWN
+        ### * it is operationally DOWN
+        # 
+        # Target[192.168.31.1_Port4]: \Port4:labro@192.168.31.1:::::2
+        # noHC[192.168.31.1_Port4]: yes
+        # SetEnv[192.168.31.1_Port4]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="Port4"
+        # MaxBytes[192.168.31.1_Port4]: 164516864
+        # Title[192.168.31.1_Port4]: Port4 -- fw01.paimei.lab.local
+        # PageTop[192.168.31.1_Port4]: <h1>Port4 -- fw01.paimei.lab.local</h1>
+        # 		<div id="sysdetails">
+        # 			<table>
+        # 				<tr>
+        # 					<td>System:</td>
+        # 					<td>fw01.paimei.lab.local in Lab</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Maintainer:</td>
+        # 					<td>Steve Rogers</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Description:</td>
+        # 					<td>Port4  </td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifType:</td>
+        # 					<td>ethernetCsmacd (6)</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifName:</td>
+        # 					<td>No Name</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Max Speed:</td>
+        # 					<td>164.5 MBytes/s</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Ip:</td>
+        # 					<td>No Ip (No DNS name)</td>
+        # 				</tr>
+        # 			</table>
+        # 		</div>
+
+
+        ### Interface 9 >> Descr: 'imq0' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+        ### The following interface is commented out because:
+        ### * has no ifSpeed property
+        # 
+        # Target[192.168.31.1_imq0]: \imq0:labro@192.168.31.1:::::2
+        # noHC[192.168.31.1_imq0]: yes
+        # SetEnv[192.168.31.1_imq0]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="imq0"
+        # MaxBytes[192.168.31.1_imq0]: 0
+        # Title[192.168.31.1_imq0]: imq0 -- fw01.paimei.lab.local
+        # PageTop[192.168.31.1_imq0]: <h1>imq0 -- fw01.paimei.lab.local</h1>
+        # 		<div id="sysdetails">
+        # 			<table>
+        # 				<tr>
+        # 					<td>System:</td>
+        # 					<td>fw01.paimei.lab.local in Lab</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Maintainer:</td>
+        # 					<td>Steve Rogers</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Description:</td>
+        # 					<td>imq0  </td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifType:</td>
+        # 					<td>Other (1)</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifName:</td>
+        # 					<td>No Name</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Max Speed:</td>
+        # 					<td>0.0 Bytes/s</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Ip:</td>
+        # 					<td>No Ip (No DNS name)</td>
+        # 				</tr>
+        # 			</table>
+        # 		</div>
+
+
+        ### Interface 10 >> Descr: 'imq1' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+        ### The following interface is commented out because:
+        ### * it is administratively DOWN
+        ### * it is operationally DOWN
+        ### * has no ifSpeed property
+        # 
+        # Target[192.168.31.1_imq1]: \imq1:labro@192.168.31.1:::::2
+        # noHC[192.168.31.1_imq1]: yes
+        # SetEnv[192.168.31.1_imq1]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="imq1"
+        # MaxBytes[192.168.31.1_imq1]: 0
+        # Title[192.168.31.1_imq1]: imq1 -- fw01.paimei.lab.local
+        # PageTop[192.168.31.1_imq1]: <h1>imq1 -- fw01.paimei.lab.local</h1>
+        # 		<div id="sysdetails">
+        # 			<table>
+        # 				<tr>
+        # 					<td>System:</td>
+        # 					<td>fw01.paimei.lab.local in Lab</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Maintainer:</td>
+        # 					<td>Steve Rogers</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Description:</td>
+        # 					<td>imq1  </td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifType:</td>
+        # 					<td>Other (1)</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifName:</td>
+        # 					<td>No Name</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Max Speed:</td>
+        # 					<td>0.0 Bytes/s</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Ip:</td>
+        # 					<td>No Ip (No DNS name)</td>
+        # 				</tr>
+        # 			</table>
+        # 		</div>
+
+
+        ### Interface 11 >> Descr: 'gre0' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+        ### The following interface is commented out because:
+        ### * it is administratively DOWN
+        ### * it is operationally DOWN
+        ### * has no ifSpeed property
+        # 
+        # Target[192.168.31.1_gre0]: \gre0:labro@192.168.31.1:::::2
+        # noHC[192.168.31.1_gre0]: yes
+        # SetEnv[192.168.31.1_gre0]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="gre0"
+        # MaxBytes[192.168.31.1_gre0]: 0
+        # Title[192.168.31.1_gre0]: gre0 -- fw01.paimei.lab.local
+        # PageTop[192.168.31.1_gre0]: <h1>gre0 -- fw01.paimei.lab.local</h1>
+        # 		<div id="sysdetails">
+        # 			<table>
+        # 				<tr>
+        # 					<td>System:</td>
+        # 					<td>fw01.paimei.lab.local in Lab</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Maintainer:</td>
+        # 					<td>Steve Rogers</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Description:</td>
+        # 					<td>gre0  </td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifType:</td>
+        # 					<td>Encapsulation Interface (131)</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifName:</td>
+        # 					<td>No Name</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Max Speed:</td>
+        # 					<td>0.0 Bytes/s</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Ip:</td>
+        # 					<td>No Ip (No DNS name)</td>
+        # 				</tr>
+        # 			</table>
+        # 		</div>
+
+
+        ### Interface 12 >> Descr: 'gretap0' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+        ### The following interface is commented out because:
+        ### * it is administratively DOWN
+        ### * it is operationally DOWN
+        # 
+        # Target[192.168.31.1_gretap0]: \gretap0:labro@192.168.31.1:::::2
+        # noHC[192.168.31.1_gretap0]: yes
+        # SetEnv[192.168.31.1_gretap0]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="gretap0"
+        # MaxBytes[192.168.31.1_gretap0]: 1250000
+        # Title[192.168.31.1_gretap0]: gretap0 -- fw01.paimei.lab.local
+        # PageTop[192.168.31.1_gretap0]: <h1>gretap0 -- fw01.paimei.lab.local</h1>
+        # 		<div id="sysdetails">
+        # 			<table>
+        # 				<tr>
+        # 					<td>System:</td>
+        # 					<td>fw01.paimei.lab.local in Lab</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Maintainer:</td>
+        # 					<td>Steve Rogers</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Description:</td>
+        # 					<td>gretap0  </td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifType:</td>
+        # 					<td>ethernetCsmacd (6)</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifName:</td>
+        # 					<td>No Name</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Max Speed:</td>
+        # 					<td>1250.0 kBytes/s</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Ip:</td>
+        # 					<td>No Ip (No DNS name)</td>
+        # 				</tr>
+        # 			</table>
+        # 		</div>
+
+
+        ### Interface 13 >> Descr: 'GuestAP' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'f2-66-d6-f4-d7-6d' ###
+        ### The following interface is commented out because:
+        ### * it is operationally DOWN
+        # 
+        # Target[192.168.31.1_GuestAP]: \GuestAP:labro@192.168.31.1:::::2
+        # noHC[192.168.31.1_GuestAP]: yes
+        # SetEnv[192.168.31.1_GuestAP]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="GuestAP"
+        # MaxBytes[192.168.31.1_GuestAP]: 1250000
+        # Title[192.168.31.1_GuestAP]: GuestAP -- fw01.paimei.lab.local
+        # PageTop[192.168.31.1_GuestAP]: <h1>GuestAP -- fw01.paimei.lab.local</h1>
+        # 		<div id="sysdetails">
+        # 			<table>
+        # 				<tr>
+        # 					<td>System:</td>
+        # 					<td>fw01.paimei.lab.local in Lab</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Maintainer:</td>
+        # 					<td>Steve Rogers</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Description:</td>
+        # 					<td>GuestAP  </td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifType:</td>
+        # 					<td>ethernetCsmacd (6)</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifName:</td>
+        # 					<td>No Name</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Max Speed:</td>
+        # 					<td>1250.0 kBytes/s</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Ip:</td>
+        # 					<td>No Ip (No DNS name)</td>
+        # 				</tr>
+        # 			</table>
+        # 		</div>
+
+
+
+
+        ### Interface 26 >> Descr: 'tun0' | Name: 'No Name' | Ip: 'No Ip' | Eth: 'No Ethernet Id' ###
+        ### The following interface is commented out because:
+        ### * has no ifSpeed property
+        # 
+        # Target[192.168.31.1_tun0]: \tun0:labro@192.168.31.1:::::2
+        # noHC[192.168.31.1_tun0]: yes
+        # SetEnv[192.168.31.1_tun0]: MRTG_INT_IP="No Ip" MRTG_INT_DESCR="tun0"
+        # MaxBytes[192.168.31.1_tun0]: 0
+        # Title[192.168.31.1_tun0]: tun0 -- fw01.paimei.lab.local
+        # PageTop[192.168.31.1_tun0]: <h1>tun0 -- fw01.paimei.lab.local</h1>
+        # 		<div id="sysdetails">
+        # 			<table>
+        # 				<tr>
+        # 					<td>System:</td>
+        # 					<td>fw01.paimei.lab.local in Lab</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Maintainer:</td>
+        # 					<td>Steve Rogers</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Description:</td>
+        # 					<td>tun0  </td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifType:</td>
+        # 					<td>Other (1)</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>ifName:</td>
+        # 					<td>No Name</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Max Speed:</td>
+        # 					<td>0.0 Bytes/s</td>
+        # 				</tr>
+        # 				<tr>
+        # 					<td>Ip:</td>
+        # 					<td>No Ip (No DNS name)</td>
+        # 				</tr>
+        # 			</table>
+        # 		</div>
+
+

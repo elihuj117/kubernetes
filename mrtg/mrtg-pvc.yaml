@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mrtg-pvc
+  namespace: mrtg
+spec:
+  storageClassName: managed-nfs
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mrtg-pv
+  namespace: mrtg
+spec:
+  capacity:
+    storage: 1Gi
+  storageClassName: managed-nfs
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /volumes/NFS01_K8SHDD_01/mrtg
+    server: 192.168.36.41
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+    namespace: mrtg
+    name: mrtg-pvc
